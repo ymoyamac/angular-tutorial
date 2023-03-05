@@ -1,0 +1,33 @@
+<main class="main-container">
+  <header>
+    <h2>Products</h2>
+  </header>
+  <body class="row-grid">
+    <section class="card-grid">
+      <div *ngFor="let product of products" class="card">
+        <h3>
+          <a
+          [title]="product.name + ' details'"
+          [routerLink]="['/products', product.id]">
+          {{ product.name }}
+        </a>
+        </h3>
+        <p *ngIf="product.description">
+          {{ product.description }}
+        </p>
+        <div class="buttons-container">
+          <button type="button" (click)="share()" class="btn-heigth">
+            Share
+          </button>
+          <app-product-alerts
+          [product]="product"
+          (notify)="onNotify()">
+          </app-product-alerts>
+        </div>
+      </div>
+    </section>
+    <aside class="cart-container">
+      <app-cart></app-cart>
+    </aside>
+  </body>
+</main>
